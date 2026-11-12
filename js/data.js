@@ -1,0 +1,296 @@
+// =====================================================================
+//  BANK MATERI GAME — Bisnis Digital XI AKL
+//  Silakan edit / tambah sendiri. Format tiap bagian dijelaskan di atasnya.
+// =====================================================================
+
+/*
+  SOAL DUEL CEPAT TEPAT
+  - q       : pertanyaan
+  - options : 4 pilihan. PILIHAN PERTAMA = JAWABAN BENAR (urutan diacak otomatis saat main)
+  - explain : penjelasan singkat yang muncul setelah jawaban dibuka
+*/
+export const QUESTIONS = [
+  // --- Model bisnis & e-commerce ---
+  { q: "Penjual tidak menyimpan stok. Pesanan langsung dikirim supplier ke pembeli. Model bisnis ini disebut…",
+    options: ["Dropship", "Reseller", "Grosir", "Konsinyasi"],
+    explain: "Dropshipper hanya memasarkan; supplier yang menyimpan stok dan mengirim barang ke pembeli." },
+  { q: "Bisnis yang menjual produk langsung ke konsumen akhir termasuk model…",
+    options: ["B2C (Business to Consumer)", "B2B (Business to Business)", "C2C (Consumer to Consumer)", "B2G (Business to Government)"],
+    explain: "B2C = perusahaan/toko menjual langsung ke konsumen akhir." },
+  { q: "Siswa menjual barang preloved miliknya ke siswa lain lewat aplikasi jual-beli. Ini contoh model…",
+    options: ["C2C", "B2B", "B2G", "G2C"],
+    explain: "C2C = sesama konsumen bertransaksi, platform hanya menjadi perantara." },
+  { q: "Produk belum tersedia, pembeli membayar dulu lalu menunggu barang diproduksi. Sistem ini disebut…",
+    options: ["Pre-order", "Flash sale", "Dropship", "Cashback"],
+    explain: "Pre-order (PO) membantu penjual memproduksi sesuai jumlah pesanan sehingga modal lebih aman." },
+  { q: "Platform berikut yang termasuk marketplace adalah…",
+    options: ["Tokopedia", "Canva", "Google Drive", "Zoom"],
+    explain: "Marketplace mempertemukan banyak penjual dan pembeli dalam satu platform." },
+  { q: "Orang lain mendapat komisi dari setiap penjualan yang terjadi lewat link khusus miliknya. Ini disebut…",
+    options: ["Affiliate marketing", "Franchise", "Konsinyasi", "Barter"],
+    explain: "Affiliate = promosi pakai link unik; komisi dibayar kalau terjadi penjualan." },
+  { q: "Berjualan sambil siaran langsung dengan fitur belanja di aplikasi disebut…",
+    options: ["Live commerce / live shopping", "Telemarketing", "Direct mail", "Door to door"],
+    explain: "Live commerce menggabungkan hiburan, interaksi real-time, dan tombol beli." },
+
+  // --- Pembayaran & logistik ---
+  { q: "QRIS adalah…",
+    options: ["Standar kode QR pembayaran nasional dari Bank Indonesia", "Aplikasi marketplace", "Jenis kartu kredit", "Kode resi pengiriman"],
+    explain: "QRIS (Quick Response Code Indonesian Standard) menyatukan berbagai QR pembayaran dalam satu kode." },
+  { q: "Pembeli membayar ketika barang sudah sampai di tangannya. Metode ini disebut…",
+    options: ["COD (Cash on Delivery)", "Paylater", "Virtual account", "Top up"],
+    explain: "COD = bayar di tempat saat paket diterima." },
+  { q: "“Beli sekarang, bayar nanti” adalah ciri metode pembayaran…",
+    options: ["Paylater", "COD", "QRIS", "Transfer bank"],
+    explain: "Paylater = pembayaran ditunda / dicicil sesuai tenor." },
+  { q: "Nomor untuk melacak posisi paket dari jasa ekspedisi disebut…",
+    options: ["Nomor resi", "Nomor invoice", "Kode voucher", "Nomor rekening"],
+    explain: "Nomor resi dipakai pembeli & penjual untuk memantau pengiriman." },
+  { q: "Pembeli mengembalikan barang karena rusak atau tidak sesuai pesanan. Ini disebut…",
+    options: ["Retur", "Restock", "Repost", "Rebranding"],
+    explain: "Retur = pengembalian barang; toko perlu kebijakan retur yang jelas." },
+
+  // --- Digital marketing ---
+  { q: "Kepanjangan SEO dalam digital marketing adalah…",
+    options: ["Search Engine Optimization", "Social Engagement Online", "Sales Enterprise Order", "Search Email Optimization"],
+    explain: "SEO = mengoptimalkan konten agar muncul di hasil teratas mesin pencari." },
+  { q: "Urutan rumus copywriting AIDA yang benar adalah…",
+    options: ["Attention – Interest – Desire – Action", "Action – Interest – Desire – Attention", "Awareness – Idea – Deal – Approval", "Attention – Info – Discount – Ads"],
+    explain: "Tarik perhatian → bangun minat → timbulkan keinginan → ajak bertindak." },
+  { q: "Kalimat “Klik keranjang & checkout sekarang!” termasuk…",
+    options: ["Call to Action (CTA)", "Headline", "Tagline", "Testimoni"],
+    explain: "CTA adalah ajakan yang jelas agar audiens melakukan tindakan tertentu." },
+  { q: "Bekerja sama dengan selebgram untuk mempromosikan produk termasuk strategi…",
+    options: ["Influencer marketing", "Email marketing", "SEO", "Telemarketing"],
+    explain: "Influencer memanfaatkan kepercayaan pengikutnya untuk memperkenalkan produk." },
+  { q: "Menampilkan iklan lagi kepada orang yang pernah mengunjungi toko online kita disebut…",
+    options: ["Retargeting", "Cold calling", "Rebranding", "Barter"],
+    explain: "Retargeting mengingatkan calon pembeli yang sudah tertarik tapi belum membeli." },
+  { q: "Engagement rate di media sosial mengukur…",
+    options: ["Tingkat interaksi audiens (like, komentar, share)", "Jumlah stok di gudang", "Besar biaya admin", "Kecepatan kurir"],
+    explain: "Semakin tinggi engagement, semakin banyak audiens yang berinteraksi dengan konten." },
+  { q: "Jadwal unggahan konten yang disusun rapi untuk beberapa minggu ke depan disebut…",
+    options: ["Kalender konten", "Neraca saldo", "Jurnal umum", "Buku besar"],
+    explain: "Kalender konten menjaga posting tetap konsisten dan sesuai tujuan pemasaran." },
+  { q: "Fungsi hashtag (#) di media sosial adalah…",
+    options: ["Mengelompokkan konten agar mudah ditemukan", "Mengunci akun", "Menghapus komentar", "Membayar iklan"],
+    explain: "Hashtag membantu konten muncul di pencarian topik yang sama." },
+  { q: "Tujuan fitur “flash sale” adalah…",
+    options: ["Menciptakan rasa mendesak agar pembeli segera membeli", "Menaikkan harga", "Mengurangi jumlah pembeli", "Menghapus ulasan buruk"],
+    explain: "Waktu & stok terbatas memicu urgensi (FOMO) sehingga pembeli cepat memutuskan." },
+  { q: "Ulasan dan rating bintang dari pembeli sebelumnya berfungsi sebagai…",
+    options: ["Bukti sosial (social proof)", "Biaya tambahan", "Kode diskon", "Nomor resi"],
+    explain: "Calon pembeli lebih percaya pada pengalaman pembeli lain." },
+
+  // --- Branding & pasar ---
+  { q: "Keunikan produk yang membedakannya dari pesaing disebut…",
+    options: ["USP (Unique Selling Proposition)", "HPP", "KPI", "CTR"],
+    explain: "USP menjawab: “Kenapa harus beli di toko kita, bukan di toko lain?”" },
+  { q: "Segmentasi pasar berdasarkan usia, jenis kelamin, dan pendapatan disebut segmentasi…",
+    options: ["Demografis", "Geografis", "Psikografis", "Perilaku"],
+    explain: "Demografis = data kependudukan seperti usia, gender, pendapatan, pekerjaan." },
+  { q: "Tujuan utama branding adalah…",
+    options: ["Membangun citra & ingatan merek di benak konsumen", "Menurunkan HPP", "Menghitung pajak", "Mempercepat ongkir"],
+    explain: "Brand yang kuat membuat produk mudah diingat dan dipercaya." },
+  { q: "Foto produk untuk katalog online sebaiknya…",
+    options: ["Terang, latar bersih, produk terlihat jelas", "Gelap supaya misterius", "Banyak barang lain di latar", "Ambil dari internet tanpa izin"],
+    explain: "Foto yang jelas meningkatkan kepercayaan dan minat beli." },
+  { q: "KPI dalam bisnis digital adalah…",
+    options: ["Indikator untuk mengukur pencapaian target", "Kode pembayaran instan", "Jenis iklan video", "Akun pajak online"],
+    explain: "KPI (Key Performance Indicator), contoh: jumlah penjualan, CTR, engagement rate." },
+
+  // --- Layanan & keamanan ---
+  { q: "Pembeli chat: “Barang saya rusak!” Respons customer service yang paling tepat adalah…",
+    options: ["Minta maaf, minta foto/video unboxing, lalu beri solusi", "Menyalahkan kurir", "Mengabaikan sampai pembeli tenang", "Langsung memblokir pembeli"],
+    explain: "Empati + bukti + solusi = pelanggan tetap percaya." },
+  { q: "Pesan yang meminta kode OTP dengan mengaku sebagai pihak marketplace adalah contoh…",
+    options: ["Phishing (penipuan)", "Endorsement", "Retargeting", "Branding"],
+    explain: "Phishing memancing korban menyerahkan data rahasia. Jangan pernah bagikan OTP!" },
+  { q: "Kode OTP dari aplikasi sebaiknya…",
+    options: ["Tidak dibagikan kepada siapa pun", "Dibagikan ke CS yang menelepon", "Dikirim ke grup kelas", "Ditulis di bio akun"],
+    explain: "Pihak resmi tidak akan pernah meminta OTP." },
+  { q: "Memakai foto produk milik toko lain tanpa izin melanggar…",
+    options: ["Hak Kekayaan Intelektual (hak cipta)", "Peraturan lalu lintas", "Kode etik kedokteran", "Aturan ongkir"],
+    explain: "Foto adalah karya cipta. Buat foto produk sendiri atau minta izin." },
+  { q: "Kegiatan menjaga hubungan baik dengan pelanggan agar mereka membeli lagi disebut…",
+    options: ["CRM (Customer Relationship Management)", "SEO", "Kalender konten", "Dropship"],
+    explain: "CRM: menyapa, follow-up, memberi promo pelanggan setia, dan menangani keluhan." },
+
+  // --- Hitungan (AKL banget!) ---
+  { q: "HPP produk Rp20.000. Penjual ingin laba 25% dari HPP. Harga jualnya adalah…",
+    options: ["Rp25.000", "Rp24.000", "Rp22.500", "Rp45.000"],
+    explain: "Laba = 25% × 20.000 = 5.000 → harga jual = 20.000 + 5.000 = Rp25.000." },
+  { q: "Harga jual Rp100.000, biaya admin marketplace 5% dari harga jual. Uang yang diterima penjual…",
+    options: ["Rp95.000", "Rp105.000", "Rp99.500", "Rp90.000"],
+    explain: "Biaya admin = 5% × 100.000 = 5.000 → diterima 100.000 − 5.000 = Rp95.000." },
+  { q: "Iklan diklik 100 orang dan menghasilkan 10 pembelian. Conversion rate dari klik ke pembelian…",
+    options: ["10%", "5%", "1%", "20%"],
+    explain: "Conversion rate = 10 ÷ 100 × 100% = 10%." },
+  { q: "Iklan tayang 5.000 kali dan diklik 250 kali. CTR (click-through rate) iklan tersebut…",
+    options: ["5%", "2,5%", "20%", "50%"],
+    explain: "CTR = 250 ÷ 5.000 × 100% = 5%." },
+  { q: "Biaya iklan Rp200.000 menghasilkan penjualan Rp1.000.000. ROAS iklan tersebut…",
+    options: ["5 kali", "0,2 kali", "2 kali", "50 kali"],
+    explain: "ROAS = penjualan ÷ biaya iklan = 1.000.000 ÷ 200.000 = 5 kali." },
+  { q: "Penjualan Rp5.000.000, HPP Rp3.000.000, biaya admin & iklan Rp500.000. Laba bersihnya…",
+    options: ["Rp1.500.000", "Rp2.000.000", "Rp2.500.000", "Rp8.500.000"],
+    explain: "5.000.000 − 3.000.000 − 500.000 = Rp1.500.000." },
+  { q: "Produk seharga Rp80.000 diberi diskon 25%. Harga setelah diskon…",
+    options: ["Rp60.000", "Rp55.000", "Rp20.000", "Rp75.000"],
+    explain: "Diskon = 25% × 80.000 = 20.000 → 80.000 − 20.000 = Rp60.000." },
+  { q: "Ongkir Rp15.000. Toko memberi subsidi ongkir 60%. Ongkir yang dibayar pembeli…",
+    options: ["Rp6.000", "Rp9.000", "Rp15.000", "Rp7.500"],
+    explain: "Pembeli bayar 40% × 15.000 = Rp6.000 (60%-nya ditanggung toko)." },
+  { q: "Toko online menjual 40 pcs dengan harga Rp25.000 per pcs. Total penjualannya…",
+    options: ["Rp1.000.000", "Rp100.000", "Rp625.000", "Rp10.000.000"],
+    explain: "40 × 25.000 = Rp1.000.000." },
+
+  // --- Pencatatan akuntansi ---
+  { q: "Toko online menerima uang tunai dari penjualan. Jurnal yang tepat adalah…",
+    options: ["Kas (D) — Penjualan (K)", "Penjualan (D) — Kas (K)", "Kas (D) — Modal (K)", "Beban (D) — Kas (K)"],
+    explain: "Kas bertambah di debit, pendapatan penjualan bertambah di kredit." },
+  { q: "Biaya iklan media sosial yang dibayar toko dicatat ke akun…",
+    options: ["Beban iklan / pemasaran", "Pendapatan", "Modal", "Piutang"],
+    explain: "Iklan adalah pengeluaran operasional → akun beban." },
+  { q: "Saldo hasil penjualan yang masih ditahan marketplace (belum dicairkan) paling tepat dicatat sebagai…",
+    options: ["Piutang", "Utang", "Beban", "Prive"],
+    explain: "Itu hak toko yang belum diterima → piutang kepada marketplace." },
+];
+
+/*
+  KARTU TEBAK ISTILAH (gaya "Taboo")
+  - word  : kata yang harus ditebak
+  - taboo : kata yang TIDAK BOLEH diucapkan saat memberi petunjuk
+*/
+export const TABOO = [
+  { word: "Marketplace", taboo: ["Toko", "Online", "Jual beli"] },
+  { word: "Dropship", taboo: ["Stok", "Supplier", "Kirim"] },
+  { word: "Reseller", taboo: ["Beli", "Jual lagi", "Agen"] },
+  { word: "Endorse", taboo: ["Artis", "Selebgram", "Promosi"] },
+  { word: "Influencer", taboo: ["Followers", "Terkenal", "Artis"] },
+  { word: "Checkout", taboo: ["Keranjang", "Bayar", "Beli"] },
+  { word: "Ongkir", taboo: ["Ongkos", "Kirim", "Kurir"] },
+  { word: "Resi", taboo: ["Nomor", "Paket", "Lacak"] },
+  { word: "COD", taboo: ["Bayar", "Tunai", "Rumah"] },
+  { word: "QRIS", taboo: ["Scan", "Kode", "Barcode"] },
+  { word: "E-wallet", taboo: ["Dompet", "Saldo", "Aplikasi"] },
+  { word: "Flash sale", taboo: ["Diskon", "Cepat", "Waktu"] },
+  { word: "Voucher", taboo: ["Kode", "Potongan", "Gratis"] },
+  { word: "Rating", taboo: ["Bintang", "Ulasan", "Nilai"] },
+  { word: "Testimoni", taboo: ["Pembeli", "Pengalaman", "Review"] },
+  { word: "Viral", taboo: ["Terkenal", "Ramai", "Menyebar"] },
+  { word: "Hashtag", taboo: ["Pagar", "Tanda", "Cari"] },
+  { word: "Caption", taboo: ["Tulisan", "Foto", "Keterangan"] },
+  { word: "Followers", taboo: ["Pengikut", "Akun", "Banyak"] },
+  { word: "Live streaming", taboo: ["Siaran", "Langsung", "Kamera"] },
+  { word: "Branding", taboo: ["Merek", "Citra", "Logo"] },
+  { word: "Logo", taboo: ["Gambar", "Merek", "Simbol"] },
+  { word: "Diskon", taboo: ["Potongan", "Harga", "Murah"] },
+  { word: "Cashback", taboo: ["Uang", "Kembali", "Saldo"] },
+  { word: "Iklan", taboo: ["Promosi", "Ads", "Tayang"] },
+  { word: "Target pasar", taboo: ["Konsumen", "Sasaran", "Pembeli"] },
+  { word: "Packaging", taboo: ["Bungkus", "Kotak", "Kemasan"] },
+  { word: "Customer service", taboo: ["Pelayanan", "Pelanggan", "Admin"] },
+  { word: "Komplain", taboo: ["Keluhan", "Marah", "Kecewa"] },
+  { word: "Password", taboo: ["Kata sandi", "Rahasia", "Login"] },
+  { word: "OTP", taboo: ["Kode", "SMS", "Angka"] },
+  { word: "Phishing", taboo: ["Penipuan", "Link", "Data"] },
+  { word: "FYP", taboo: ["Beranda", "Viral", "TikTok"] },
+  { word: "Unboxing", taboo: ["Buka", "Paket", "Video"] },
+  { word: "Pre-order", taboo: ["Pesan", "Dulu", "Menunggu"] },
+  { word: "Stok", taboo: ["Barang", "Gudang", "Habis"] },
+  { word: "Invoice", taboo: ["Tagihan", "Faktur", "Bukti"] },
+  { word: "Konten", taboo: ["Video", "Posting", "Unggah"] },
+  { word: "Affiliate", taboo: ["Komisi", "Link", "Promosi"] },
+  { word: "HPP", taboo: ["Harga", "Pokok", "Produksi"] },
+  { word: "Laba", taboo: ["Untung", "Rugi", "Keuntungan"] },
+  { word: "Modal", taboo: ["Uang", "Awal", "Usaha"] },
+  { word: "Kas", taboo: ["Uang", "Tunai", "Saldo"] },
+  { word: "Piutang", taboo: ["Tagih", "Utang", "Belum bayar"] },
+  { word: "Jurnal", taboo: ["Catat", "Debit", "Kredit"] },
+  { word: "Neraca", taboo: ["Aset", "Laporan", "Seimbang"] },
+  { word: "Startup", taboo: ["Perusahaan", "Baru", "Teknologi"] },
+  { word: "Ojek online", taboo: ["Ojol", "Driver", "Motor"] },
+  { word: "Keranjang belanja", taboo: ["Troli", "Checkout", "Simpan"] },
+  { word: "Algoritma", taboo: ["Rumus", "Rekomendasi", "Sistem"] },
+];
+
+/*
+  PRODUK UNTUK MODE LIVE JUALAN
+  - hpp    : Harga Pokok Penjualan per unit (Rp)
+  - margin : target laba (% dari HPP) → harga jual = HPP + margin% × HPP
+*/
+export const PRODUCTS = [
+  { emoji: "🌶️", name: "Keripik Singkong Pedas", desc: "Kemasan 200 gr, renyah, level pedas bisa dipilih.", hpp: 8000, margin: 50 },
+  { emoji: "🥤", name: "Tumbler Custom Nama", desc: "Botol minum 500 ml, tahan panas & dingin, bisa cetak nama.", hpp: 35000, margin: 40 },
+  { emoji: "👕", name: "Kaos Sablon Kelas", desc: "Bahan katun combed 30s, sablon desain sendiri.", hpp: 60000, margin: 25 },
+  { emoji: "🥟", name: "Dimsum Frozen isi 10", desc: "Dimsum ayam beku, tinggal kukus 10 menit.", hpp: 20000, margin: 30 },
+  { emoji: "👜", name: "Totebag Kanvas Lukis", desc: "Totebag kanvas tebal dengan lukisan tangan.", hpp: 25000, margin: 60 },
+  { emoji: "🔑", name: "Gantungan Kunci Resin", desc: "Resin bening dengan bunga kering asli.", hpp: 6000, margin: 50 },
+  { emoji: "🕯️", name: "Lilin Aromaterapi", desc: "Wangi lavender, bikin rileks, tahan ±20 jam.", hpp: 18000, margin: 50 },
+  { emoji: "🌶", name: "Sambal Bawang Botol", desc: "Sambal bawang 150 gr tanpa pengawet.", hpp: 12000, margin: 75 },
+  { emoji: "🎨", name: "Jasa Desain Logo UMKM", desc: "3 pilihan konsep logo, revisi 2 kali.", hpp: 50000, margin: 100 },
+  { emoji: "📒", name: "Planner Keuangan Pelajar", desc: "Buku agenda + catatan kas harian untuk pelajar.", hpp: 22000, margin: 50 },
+  { emoji: "📱", name: "Casing HP Custom", desc: "Casing anti-jatuh dengan desain foto sendiri.", hpp: 15000, margin: 60 },
+  { emoji: "🧋", name: "Es Kopi Susu Literan", desc: "Kopi susu gula aren 1 liter, cukup 4–5 gelas.", hpp: 30000, margin: 50 },
+  { emoji: "🍪", name: "Cookies Coklat Toples", desc: "Toples 250 gr, coklat lumer, cocok untuk hampers.", hpp: 32000, margin: 25 },
+  { emoji: "🍌", name: "Pisang Coklat Lumer", desc: "Isi 5 per box, kulit lumpia renyah, topping keju.", hpp: 10000, margin: 50 },
+];
+
+export const TARGET_MARKETS = [
+  "Pelajar SMA/SMK", "Mahasiswa & anak kos", "Ibu rumah tangga", "Pekerja kantoran",
+  "Pecinta kuliner", "Pemilik UMKM", "Remaja pencinta fashion", "Orang tua yang mencari kado",
+];
+
+export const PROMOS = [
+  "Gratis ongkir untuk pembelian min. 2 pcs",
+  "Diskon 10% untuk 10 pembeli pertama",
+  "Beli 3 gratis 1",
+  "Bonus stiker untuk setiap pembelian",
+  "Cashback 5% kalau bayar pakai QRIS",
+  "Harga spesial khusus selama LIVE",
+  "Voucher Rp2.000 untuk yang follow toko",
+];
+
+/* Rubrik penilaian Live Jualan (tiap poin dicentang guru) */
+export const LIVE_RUBRIC = [
+  { label: "Membuka live & menyapa penonton dengan menarik", hint: "Attention" },
+  { label: "Menjelaskan keunggulan / manfaat produk (USP)", hint: "Interest & Desire" },
+  { label: "Menyebut harga jual yang BENAR (HPP + laba)", hint: "Hitungan AKL" },
+  { label: "Menyampaikan promo & ajakan membeli (CTA)", hint: "Action" },
+  { label: "Merespons komentar / pertanyaan penonton", hint: "Customer service" },
+];
+
+/* Komentar penonton simulasi saat LIVE. {p} = nama produk. q:true = pertanyaan yang sebaiknya dijawab host */
+export const LIVE_COMMENTS = [
+  { t: "halo kak 👋" },
+  { t: "wah {p} keren bgt" },
+  { t: "baru gabung nih kak" },
+  { t: "mantap kak lanjuttt 🔥" },
+  { t: "lucu bangettt 😍" },
+  { t: "share ke grup kelas ah" },
+  { t: "langsung masuk keranjang 🛒" },
+  { t: "rating tokonya bagus nih ⭐⭐⭐⭐⭐" },
+  { t: "spill harganya dong kak", q: true },
+  { t: "{p} ready stok kak?", q: true },
+  { t: "bisa COD gak kak?", q: true },
+  { t: "ongkir ke Makassar berapa kak?", q: true },
+  { t: "ada promo apa hari ini kak?", q: true },
+  { t: "bedanya sama toko sebelah apa kak?", q: true },
+  { t: "bisa custom gak kak?", q: true },
+  { t: "minimal order berapa kak?", q: true },
+  { t: "awet gak kak? 🤔", q: true },
+  { t: "pengiriman berapa hari kak?", q: true },
+  { t: "bisa bayar pakai QRIS?", q: true },
+  { t: "kak sapa aku dong 😆", q: true },
+  { t: "cocok buat kado gak kak?", q: true },
+  { t: "jelasin lagi kelebihannya kak", q: true },
+  { t: "beli 2 dapat diskon gak?", q: true },
+  { t: "kak suaranya kurang keras 🙏", q: true },
+];
+
+export const VIEWER_NAMES = [
+  "nadia.rst", "bayu_store", "dimas07", "putri.snack", "fajar_ok", "salsabila_",
+  "rizal.mp", "ayu_lestari", "kevinn", "mama_azka", "tiara.id", "galih_99",
+  "nurul.hdy", "budi.dagang", "intan_cute", "rafi.akl", "sinta.olshop", "yoga_pratama",
+];

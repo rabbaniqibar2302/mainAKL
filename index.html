@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Digipreneur Arena · Bisnis Digital XI AKL</title>
+  <meta name="description" content="Game kelas interaktif berbasis kamera untuk mata pelajaran Bisnis Digital kelas XI AKL.">
+  <meta name="theme-color" content="#070b16">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-cam="dim">
+  <!-- Lapisan kamera (selalu di belakang) -->
+  <video id="cam" autoplay playsinline muted></video>
+  <div id="cam-veil"></div>
+
+  <!-- Bar atas -->
+  <header id="topbar">
+    <button class="brand" data-top="home" title="Kembali ke menu">
+      <span class="brand-logo">🎮</span>
+      <span class="brand-text"><b>DIGIPRENEUR</b> ARENA</span>
+    </button>
+    <div id="mini-scores" aria-label="Skor tim"></div>
+    <div class="top-actions">
+      <span id="trk-status" class="status-chip" data-state="idle">🖐 Pelacak tangan</span>
+      <button class="icon-btn" data-top="camera" title="Pengaturan kamera">🎥</button>
+      <button class="icon-btn" data-top="sound" title="Suara on/off">🔊</button>
+      <button class="icon-btn" data-top="fullscreen" title="Layar penuh (F)">⛶</button>
+      <button class="icon-btn" data-top="help" title="Petunjuk">?</button>
+    </div>
+  </header>
+
+  <!-- Layar permainan -->
+  <main id="screen"></main>
+
+  <!-- Titik jari & efek (di atas UI, tidak bisa diklik) -->
+  <canvas id="fx"></canvas>
+
+  <div id="modal-root"></div>
+  <div id="toast-root"></div>
+
+  <noscript>
+    <p style="padding:2rem;color:#fff">Aktifkan JavaScript untuk memainkan game ini.</p>
+  </noscript>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
