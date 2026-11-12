@@ -1,6 +1,6 @@
 // Pelacak tangan & gestur memakai MediaPipe Gesture Recognizer (berjalan 100% di browser).
 // - Ujung jari telunjuk = "kursor" untuk menyentuh tombol di udara (elemen dengan atribut data-air)
-// - Gestur 👍 👎 ✌️ ✋ dikenali untuk mode Tebak Istilah & Live Jualan
+// - Gestur 👍 👎 dikenali untuk mode Tebak Istilah
 import { camera } from "./camera.js";
 import { store } from "./store.js";
 
@@ -233,7 +233,7 @@ function loop(now) {
   }
   const hands = o.active && !tracker.suspended ? tracker.hands : [];
   const shown = smooth(hands, dt);
-  frameListeners.forEach((fn) => fn(hands, dt));
+  frameListeners.forEach((fn) => fn(shown, dt));
   airUpdate(o.active && o.pointers ? shown : [], dt);
   draw(shown);
 }

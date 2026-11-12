@@ -141,9 +141,9 @@ export function openHelpModal() {
           <p class="small muted">Keyboard: tim kiri <kbd>1</kbd>–<kbd>4</kbd>, tim kanan <kbd>7</kbd> <kbd>8</kbd> <kbd>9</kbd> <kbd>0</kbd>, lanjut <kbd>Spasi</kbd>.</p>
         </section>
         <section>
-          <h3>🔴 Live Jualan</h3>
-          <p>Tim dapat misi acak (produk, target pembeli, promo, HPP). Setelah waktu persiapan, 1–2 host berjualan LIVE di depan kamera. Tim lain menjadi penonton yang bertanya. Penonton menunjukkan 👍 ke kamera untuk mengirim ❤. Host ✌️ untuk memotret produk. Guru menilai dengan rubrik + bonus tepuk tangan.</p>
-          <p class="small muted">Keyboard saat live: <kbd>L</kbd> like, <kbd>P</kbd> foto, <kbd>Spasi</kbd> akhiri live.</p>
+          <h3>🧺 Tangkap & Pilah</h3>
+          <p>2 pemain dari satu tim berdiri di depan kamera. Kartu jatuh dari atas; sentuh kartu dengan jari untuk menangkapnya, lalu gerakkan tangan ke keranjang kiri/kanan yang benar (mis. Pendapatan vs Beban). Benar +20, beruntun 3× bonus +10, salah −10. Tim lain boleh berteriak memberi arahan.</p>
+          <p class="small muted">Tanpa kamera: seret kartu dengan mouse, atau <kbd>←</kbd> / <kbd>→</kbd> untuk memasukkan kartu paling bawah.</p>
         </section>
         <section>
           <h3>🗣️ Tebak Istilah</h3>

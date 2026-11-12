@@ -1,6 +1,6 @@
 # 🎮 Digipreneur Arena — Game Bisnis Digital XI AKL
 
-Game kelas interaktif berbasis **kamera TV di depan kelas**. Siswa bermain dalam tim, maju ke depan kamera, dan berinteraksi langsung: menunjuk jawaban **di udara** dengan jari, berjualan **LIVE**, dan menebak istilah bisnis digital dengan bantuan teman satu tim.
+Game kelas interaktif berbasis **kamera TV di depan kelas**. Siswa bermain dalam tim, maju ke depan kamera, dan berinteraksi langsung: menunjuk jawaban **di udara** dengan jari, menangkap & memilah kartu dengan **gerakan tangan**, dan menebak istilah bisnis digital dengan bantuan teman satu tim.
 
 - ✅ Tanpa login, tanpa database, tanpa server — cukup di-deploy ke **Vercel**
 - ✅ Pelacakan tangan & gestur berjalan **100% di browser** (MediaPipe, sudah disertakan di folder `vendor/`)
@@ -12,7 +12,7 @@ Game kelas interaktif berbasis **kamera TV di depan kelas**. Siswa bermain dalam
 | Mode | Cara main | Interaksi antar siswa |
 |---|---|---|
 | ⚔️ **Duel Cepat Tepat** | 2 wakil tim berdiri di kiri & kanan layar, menjawab soal dengan menunjuk huruf A–D di udara dan menahan jari ±1 detik. Pertama benar +100. | Adu cepat 1 lawan 1, tim menyemangati, pemain bergiliran |
-| 🔴 **Live Jualan** | Tim dapat misi acak (produk, target pembeli, promo, **HPP + target laba**). Setelah waktu persiapan, host berjualan LIVE di depan kamera dengan tampilan siaran langsung, komentar penonton, dan ❤. | Diskusi tim, tim lain jadi penonton yang bertanya, penonton kirim ❤ dengan 👍 ke kamera, tepuk tangan kelas jadi bonus |
+| 🧺 **Tangkap & Pilah** | Kartu berjatuhan dari atas layar. Pemain menyentuh kartu dengan jari untuk menangkapnya, lalu menggerakkan tangan ke keranjang kiri/kanan yang benar. Topik: Pendapatan/Beban, Aset/Utang, Promosi Organik/Berbayar, Aman/Bahaya, Produk Fisik/Digital. | 2 pemain satu tim bekerja sama, anggota tim lain berteriak memberi arahan |
 | 🗣️ **Tebak Istilah** | Penebak membelakangi layar, tim memberi petunjuk tanpa kata terlarang. Juri dari tim lawan menilai dengan 👍 (benar) / 👎 (lewati) ke kamera. | Kerja sama tim + tim lawan jadi juri |
 | 🏆 **Podium & Foto Juara** | Peringkat tim + foto bersama dengan bingkai, bisa diunduh. | Seluruh kelas |
 
@@ -44,17 +44,17 @@ Tips: pemain berdiri ±1,5–2,5 m dari kamera, ruangan cukup terang, dan hindar
 |---|---|
 | Duel | Tim kiri `1` `2` `3` `4` · Tim kanan `7` `8` `9` `0` · Lanjut `Spasi` |
 | Tebak Istilah | Benar `→` / `PageDown` · Lewati `←` / `PageUp` (bisa pakai clicker presentasi) |
-| Live Jualan | Like `L` · Foto produk `P` · Akhiri live `Spasi` |
+| Tangkap & Pilah | Seret kartu dengan mouse, atau `←` / `→` memasukkan kartu paling bawah |
 | Semua | Layar penuh `F` |
 
 Semua tombol di layar juga bisa diklik dengan mouse.
 
 ## ✏️ Mengubah soal & materi
 
-Semua soal, kartu tebak istilah, produk live, promo, dan komentar penonton ada di **`js/data.js`**. Edit langsung di GitHub (ikon pensil) → **Commit** → Vercel otomatis memperbarui game.
+Semua soal, kartu tebak istilah, dan kartu tangkap & pilah ada di **`js/data.js`**. Edit langsung di GitHub (ikon pensil) → **Commit** → Vercel otomatis memperbarui game.
 
 - Soal duel: pilihan **pertama** selalu jawaban yang benar (urutan diacak otomatis saat main).
-- Produk live: isi `hpp` dan `margin` (persen dari HPP); harga jual yang benar dihitung otomatis.
+- Tangkap & Pilah: tiap kartu ditulis `["teks", "L"]` (keranjang kiri) atau `["teks", "R"]` (keranjang kanan). Topik baru bisa ditambah di `SORT_SETS`.
 
 ## 🧪 Coba di komputer sendiri (opsional)
 
@@ -74,6 +74,6 @@ js/data.js            ← bank soal & materi (edit di sini)
 js/app.js             titik masuk, bar atas
 js/camera.js          akses webcam
 js/tracker.js         pelacak tangan, kursor jari, gestur
-js/screens/*.js       menu, duel, live, tebak, podium
+js/screens/*.js       menu, duel, pilah, tebak, podium
 vendor/mediapipe/     library MediaPipe Tasks Vision 0.10.14 + model gestur (Apache-2.0)
 ```

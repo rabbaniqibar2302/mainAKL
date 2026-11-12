@@ -13,9 +13,9 @@ const MODES = [
     tags: ["🖐 Sentuh udara", "Kuis materi + hitungan"],
   },
   {
-    id: "live", n: 2, emoji: "🔴", accent: "#ff4d8d", title: "Live Jualan",
-    desc: "Tim berjualan LIVE di depan kamera: hitung harga jual, sampaikan promo, jawab komentar.",
-    tags: ["📹 Live selling", "💰 HPP & laba"],
+    id: "pilah", n: 2, emoji: "🧺", accent: "#ff4d8d", title: "Tangkap & Pilah",
+    desc: "Kartu berjatuhan! Tangkap dengan tangan lalu bawa ke keranjang yang benar: pendapatan/beban, aset/utang, dll.",
+    tags: ["🙌 Gerak tangan", "2 pemain + tim"],
   },
   {
     id: "tebak", n: 3, emoji: "🗣️", accent: "#ffd23f", title: "Tebak Istilah",

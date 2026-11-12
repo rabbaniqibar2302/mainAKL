@@ -216,81 +216,110 @@ export const TABOO = [
 ];
 
 /*
-  PRODUK UNTUK MODE LIVE JUALAN
-  - hpp    : Harga Pokok Penjualan per unit (Rp)
-  - margin : target laba (% dari HPP) → harga jual = HPP + margin% × HPP
+  KARTU MODE TANGKAP & PILAH
+  Tiap topik punya 2 keranjang (kiri & kanan). Kartu: [teks, "L" atau "R"]
+  L = masuk keranjang KIRI, R = masuk keranjang KANAN.
+  Silakan tambah topik baru dengan format yang sama.
 */
-export const PRODUCTS = [
-  { emoji: "🌶️", name: "Keripik Singkong Pedas", desc: "Kemasan 200 gr, renyah, level pedas bisa dipilih.", hpp: 8000, margin: 50 },
-  { emoji: "🥤", name: "Tumbler Custom Nama", desc: "Botol minum 500 ml, tahan panas & dingin, bisa cetak nama.", hpp: 35000, margin: 40 },
-  { emoji: "👕", name: "Kaos Sablon Kelas", desc: "Bahan katun combed 30s, sablon desain sendiri.", hpp: 60000, margin: 25 },
-  { emoji: "🥟", name: "Dimsum Frozen isi 10", desc: "Dimsum ayam beku, tinggal kukus 10 menit.", hpp: 20000, margin: 30 },
-  { emoji: "👜", name: "Totebag Kanvas Lukis", desc: "Totebag kanvas tebal dengan lukisan tangan.", hpp: 25000, margin: 60 },
-  { emoji: "🔑", name: "Gantungan Kunci Resin", desc: "Resin bening dengan bunga kering asli.", hpp: 6000, margin: 50 },
-  { emoji: "🕯️", name: "Lilin Aromaterapi", desc: "Wangi lavender, bikin rileks, tahan ±20 jam.", hpp: 18000, margin: 50 },
-  { emoji: "🌶", name: "Sambal Bawang Botol", desc: "Sambal bawang 150 gr tanpa pengawet.", hpp: 12000, margin: 75 },
-  { emoji: "🎨", name: "Jasa Desain Logo UMKM", desc: "3 pilihan konsep logo, revisi 2 kali.", hpp: 50000, margin: 100 },
-  { emoji: "📒", name: "Planner Keuangan Pelajar", desc: "Buku agenda + catatan kas harian untuk pelajar.", hpp: 22000, margin: 50 },
-  { emoji: "📱", name: "Casing HP Custom", desc: "Casing anti-jatuh dengan desain foto sendiri.", hpp: 15000, margin: 60 },
-  { emoji: "🧋", name: "Es Kopi Susu Literan", desc: "Kopi susu gula aren 1 liter, cukup 4–5 gelas.", hpp: 30000, margin: 50 },
-  { emoji: "🍪", name: "Cookies Coklat Toples", desc: "Toples 250 gr, coklat lumer, cocok untuk hampers.", hpp: 32000, margin: 25 },
-  { emoji: "🍌", name: "Pisang Coklat Lumer", desc: "Isi 5 per box, kulit lumpia renyah, topping keju.", hpp: 10000, margin: 50 },
-];
-
-export const TARGET_MARKETS = [
-  "Pelajar SMA/SMK", "Mahasiswa & anak kos", "Ibu rumah tangga", "Pekerja kantoran",
-  "Pecinta kuliner", "Pemilik UMKM", "Remaja pencinta fashion", "Orang tua yang mencari kado",
-];
-
-export const PROMOS = [
-  "Gratis ongkir untuk pembelian min. 2 pcs",
-  "Diskon 10% untuk 10 pembeli pertama",
-  "Beli 3 gratis 1",
-  "Bonus stiker untuk setiap pembelian",
-  "Cashback 5% kalau bayar pakai QRIS",
-  "Harga spesial khusus selama LIVE",
-  "Voucher Rp2.000 untuk yang follow toko",
-];
-
-/* Rubrik penilaian Live Jualan (tiap poin dicentang guru) */
-export const LIVE_RUBRIC = [
-  { label: "Membuka live & menyapa penonton dengan menarik", hint: "Attention" },
-  { label: "Menjelaskan keunggulan / manfaat produk (USP)", hint: "Interest & Desire" },
-  { label: "Menyebut harga jual yang BENAR (HPP + laba)", hint: "Hitungan AKL" },
-  { label: "Menyampaikan promo & ajakan membeli (CTA)", hint: "Action" },
-  { label: "Merespons komentar / pertanyaan penonton", hint: "Customer service" },
-];
-
-/* Komentar penonton simulasi saat LIVE. {p} = nama produk. q:true = pertanyaan yang sebaiknya dijawab host */
-export const LIVE_COMMENTS = [
-  { t: "halo kak 👋" },
-  { t: "wah {p} keren bgt" },
-  { t: "baru gabung nih kak" },
-  { t: "mantap kak lanjuttt 🔥" },
-  { t: "lucu bangettt 😍" },
-  { t: "share ke grup kelas ah" },
-  { t: "langsung masuk keranjang 🛒" },
-  { t: "rating tokonya bagus nih ⭐⭐⭐⭐⭐" },
-  { t: "spill harganya dong kak", q: true },
-  { t: "{p} ready stok kak?", q: true },
-  { t: "bisa COD gak kak?", q: true },
-  { t: "ongkir ke Makassar berapa kak?", q: true },
-  { t: "ada promo apa hari ini kak?", q: true },
-  { t: "bedanya sama toko sebelah apa kak?", q: true },
-  { t: "bisa custom gak kak?", q: true },
-  { t: "minimal order berapa kak?", q: true },
-  { t: "awet gak kak? 🤔", q: true },
-  { t: "pengiriman berapa hari kak?", q: true },
-  { t: "bisa bayar pakai QRIS?", q: true },
-  { t: "kak sapa aku dong 😆", q: true },
-  { t: "cocok buat kado gak kak?", q: true },
-  { t: "jelasin lagi kelebihannya kak", q: true },
-  { t: "beli 2 dapat diskon gak?", q: true },
-  { t: "kak suaranya kurang keras 🙏", q: true },
-];
-
-export const VIEWER_NAMES = [
-  "nadia.rst", "bayu_store", "dimas07", "putri.snack", "fajar_ok", "salsabila_",
-  "rizal.mp", "ayu_lestari", "kevinn", "mama_azka", "tiara.id", "galih_99",
-  "nurul.hdy", "budi.dagang", "intan_cute", "rafi.akl", "sinta.olshop", "yoga_pratama",
+export const SORT_SETS = [
+  {
+    id: "pb", title: "Pendapatan atau Beban?",
+    left: { label: "Pendapatan", emoji: "💰" }, right: { label: "Beban", emoji: "💸" },
+    items: [
+      ["Hasil penjualan di marketplace", "L"],
+      ["Pembeli membayar lewat QRIS", "L"],
+      ["Komisi affiliate diterima", "L"],
+      ["Pendapatan jasa desain logo", "L"],
+      ["Penjualan saat live streaming", "L"],
+      ["Pesanan COD dibayar pembeli", "L"],
+      ["Bayaran endorse diterima toko", "L"],
+      ["Biaya iklan media sosial", "R"],
+      ["Biaya admin marketplace", "R"],
+      ["Gaji admin toko online", "R"],
+      ["Bayar listrik & internet", "R"],
+      ["Subsidi ongkir dari toko", "R"],
+      ["Bayar fotografer produk", "R"],
+      ["Langganan aplikasi desain", "R"],
+    ],
+  },
+  {
+    id: "au", title: "Harta (Aset) atau Utang?",
+    left: { label: "Aset", emoji: "🏦" }, right: { label: "Utang", emoji: "🧾" },
+    items: [
+      ["Kas di rekening toko", "L"],
+      ["Saldo e-wallet usaha", "L"],
+      ["Stok barang dagang", "L"],
+      ["Laptop untuk desain", "L"],
+      ["Saldo penjualan yang ditahan marketplace", "L"],
+      ["Kamera untuk foto produk", "L"],
+      ["Perlengkapan packing", "L"],
+      ["Utang ke supplier", "R"],
+      ["Tagihan paylater usaha", "R"],
+      ["Pinjaman dari bank", "R"],
+      ["Uang muka pre-order dari pembeli", "R"],
+      ["Gaji karyawan yang belum dibayar", "R"],
+      ["Tagihan ongkir ke ekspedisi", "R"],
+      ["Cicilan motor kurir", "R"],
+    ],
+  },
+  {
+    id: "ob", title: "Promosi Gratis (Organik) atau Berbayar?",
+    left: { label: "Organik", emoji: "🌱" }, right: { label: "Berbayar", emoji: "💳" },
+    items: [
+      ["SEO website toko", "L"],
+      ["Posting konten rutin", "L"],
+      ["Membalas komentar pembeli", "L"],
+      ["Testimoni pelanggan", "L"],
+      ["Pakai hashtag yang tepat", "L"],
+      ["Promosi dari mulut ke mulut", "L"],
+      ["Video tutorial di akun sendiri", "L"],
+      ["Instagram Ads", "R"],
+      ["Google Ads", "R"],
+      ["Endorse selebgram (dibayar)", "R"],
+      ["TikTok Ads", "R"],
+      ["Paid promote di akun besar", "R"],
+      ["Fitur naikkan produk berbayar", "R"],
+      ["Sponsor acara sekolah", "R"],
+    ],
+  },
+  {
+    id: "ab", title: "Aman atau Bahaya? (Keamanan Digital)",
+    left: { label: "Aman", emoji: "🛡️" }, right: { label: "Bahaya", emoji: "⚠️" },
+    items: [
+      ["Aktifkan verifikasi 2 langkah", "L"],
+      ["Password campuran huruf, angka, simbol", "L"],
+      ["Belanja di aplikasi resmi", "L"],
+      ["Cek rekening sebelum transfer", "L"],
+      ["Logout dari HP orang lain", "L"],
+      ["Rutin update aplikasi", "L"],
+      ["Laporkan akun penipu", "L"],
+      ["Bagikan kode OTP ke “CS”", "R"],
+      ["Klik link hadiah dari nomor asing", "R"],
+      ["Transfer di luar aplikasi marketplace", "R"],
+      ["Pakai password 123456", "R"],
+      ["Tulis PIN di bio akun", "R"],
+      ["Install file APK kiriman WhatsApp", "R"],
+      ["Satu password untuk semua akun", "R"],
+    ],
+  },
+  {
+    id: "fd", title: "Produk Fisik atau Produk Digital?",
+    left: { label: "Fisik", emoji: "📦" }, right: { label: "Digital", emoji: "💾" },
+    items: [
+      ["Kaos sablon", "L"],
+      ["Keripik pedas", "L"],
+      ["Tumbler custom", "L"],
+      ["Buku cetak", "L"],
+      ["Casing HP", "L"],
+      ["Totebag kanvas", "L"],
+      ["Sambal botol", "L"],
+      ["E-book", "R"],
+      ["Template Canva", "R"],
+      ["Kelas online", "R"],
+      ["Preset foto", "R"],
+      ["Voucher game", "R"],
+      ["Aplikasi / software", "R"],
+      ["Font digital", "R"],
+    ],
+  },
 ];

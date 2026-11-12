@@ -8,7 +8,7 @@ import { $, esc, num } from "./ui.js";
 import { openCameraModal, openHelpModal } from "./modals.js";
 import home from "./screens/home.js";
 import duel from "./screens/duel.js";
-import live from "./screens/live.js";
+import pilah from "./screens/pilah.js";
 import tebak from "./screens/tebak.js";
 import podium from "./screens/podium.js";
 
@@ -17,7 +17,7 @@ sfx.enabled = store.settings.sound;
 
 register("home", home);
 register("duel", duel);
-register("live", live);
+register("pilah", pilah);
 register("tebak", tebak);
 register("podium", podium);
 
