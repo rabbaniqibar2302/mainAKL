@@ -1,5 +1,6 @@
 // Utilitas UI kecil yang dipakai semua layar
 import { sfx } from "./sfx.js";
+import { tracker } from "./tracker.js";
 
 export const $ = (s, r = document) => r.querySelector(s);
 export const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -104,22 +105,43 @@ export function confirmBox(title, message, yesLabel = "Ya", kind = "danger") {
   });
 }
 
-/** Timer mundur. onTick(sisaMs), onEnd(). Bunyi tik di 5 detik terakhir. */
-export function createTimer(ms, { onTick, onEnd, tick = true } = {}) {
+/** Timer mundur. onTick(sisaMs) dipanggil HANYA saat angka detik berubah (hemat).
+ *  bar: elemen bilah waktu — dianimasikan oleh CSS (tanpa kerja JavaScript per frame).
+ *  Bunyi tik di 5 detik terakhir. */
+export function createTimer(ms, { onTick, onEnd, tick = true, bar } = {}) {
   const end = performance.now() + ms;
-  let lastSec = Math.ceil(ms / 1000);
+  let lastSec = -1;
   let stopped = false;
-  const id = setInterval(() => {
+  if (bar) {
+    bar.style.transition = "none";
+    bar.style.transform = "scaleX(1)";
+    void bar.offsetWidth;
+    bar.style.transition = `transform ${ms}ms linear`;
+    bar.style.transform = "scaleX(0)";
+  }
+  const step = () => {
     if (stopped) return;
     const left = Math.max(0, end - performance.now());
     const sec = Math.ceil(left / 1000);
-    if (tick && sec !== lastSec && sec <= 5 && sec > 0) sfx.tick();
-    lastSec = sec;
-    onTick?.(left);
+    if (sec !== lastSec) {
+      if (tick && lastSec !== -1 && sec <= 5 && sec > 0) sfx.tick();
+      lastSec = sec;
+      onTick?.(left);
+    }
     if (left <= 0) { stop(); onEnd?.(); }
-  }, 100);
-  function stop() { stopped = true; clearInterval(id); }
-  onTick?.(ms);
+  };
+  const id = setInterval(step, 200);
+  function stop() {
+    if (stopped) return;
+    stopped = true;
+    clearInterval(id);
+    if (bar) { // bekukan bilah di posisinya sekarang
+      const cur = getComputedStyle(bar).transform;
+      bar.style.transition = "none";
+      bar.style.transform = cur;
+    }
+  }
+  step();
   return { stop };
 }
 
@@ -137,6 +159,8 @@ export function keys(map) {
 /** Hitung mundur besar 3-2-1 di tengah layar */
 export function bigCountdown(from = 3, final = "MULAI!") {
   return new Promise((resolve) => {
+    // jeda pelacak tangan selama hitung mundur supaya animasi mulus
+    tracker.suspended++;
     const ov = el(`<div class="countdown"><span></span></div>`);
     document.body.appendChild(ov);
     const span = ov.firstElementChild;
@@ -145,7 +169,10 @@ export function bigCountdown(from = 3, final = "MULAI!") {
       span.textContent = n > 0 ? n : final;
       span.classList.remove("pop"); void span.offsetWidth; span.classList.add("pop");
       n > 0 ? sfx.count() : sfx.go();
-      if (n-- <= 0) { setTimeout(() => { ov.remove(); resolve(); }, 650); return; }
+      if (n-- <= 0) {
+        setTimeout(() => { ov.remove(); tracker.suspended = Math.max(0, tracker.suspended - 1); resolve(); }, 650);
+        return;
+      }
       setTimeout(step, 850);
     };
     step();
@@ -160,7 +187,7 @@ export function banner(html, color = "var(--yellow)", ms = 1700) {
   setTimeout(() => b.remove(), ms + 400);
 }
 
-export function confetti(colors = ["#ffd23f", "#ff4d8d", "#22d3ee", "#22c55e", "#a855f7"], count = 90) {
+export function confetti(colors = ["#ffd23f", "#ff4d8d", "#22d3ee", "#22c55e", "#a855f7"], count = 55) {
   const wrap = el(`<div class="confetti"></div>`);
   for (let i = 0; i < count; i++) {
     const p = document.createElement("i");

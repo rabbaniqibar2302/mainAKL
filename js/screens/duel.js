@@ -172,9 +172,9 @@ export default function duel(root) {
     const total = cfg.seconds * 1000;
     const qt = $("#qt", root), bar = $("#qbar", root);
     timer = createTimer(total, {
+      bar,
       onTick: (ms) => {
         qt.textContent = Math.ceil(ms / 1000);
-        bar.style.transform = `scaleX(${ms / total})`;
         qt.classList.toggle("urgent", ms <= 5000);
         bar.classList.toggle("urgent", ms <= 5000);
       },

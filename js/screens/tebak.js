@@ -114,9 +114,9 @@ export default function tebak(root) {
     const total = cfg.seconds * 1000;
     const tt = $("#tt", root), bar = $("#tbar", root);
     timer = createTimer(total, {
+      bar,
       onTick: (ms) => {
         tt.textContent = Math.ceil(ms / 1000);
-        bar.style.transform = `scaleX(${ms / total})`;
         tt.classList.toggle("urgent", ms <= 10000);
         bar.classList.toggle("urgent", ms <= 10000);
       },

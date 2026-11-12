@@ -4,7 +4,7 @@
    ========================================================= */
 :root {
   --bg: #070b16;
-  --panel: rgba(12, 17, 34, 0.8);
+  --panel: rgba(12, 17, 34, 0.9);
   --panel-solid: #10172b;
   --line: rgba(255, 255, 255, 0.13);
   --text: #f4f6fb;
@@ -108,8 +108,6 @@ body:not(.cam-on) #cam-veil { opacity: 0; }
   padding: 0 1.2rem;
   background: linear-gradient(180deg, rgba(7, 11, 22, 0.92), rgba(7, 11, 22, 0.65));
   border-bottom: 1px solid var(--line);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   transition: opacity 0.3s;
 }
 .brand {
@@ -199,8 +197,6 @@ body.photo-mode #screen, body.photo-mode #topbar { opacity: 0; pointer-events: n
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
   box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.35);
 }
 .eyebrow {
@@ -341,10 +337,10 @@ body.photo-mode #screen, body.photo-mode #topbar { opacity: 0; pointer-events: n
   height: 100%;
   background: linear-gradient(90deg, var(--cyan), var(--yellow));
   transform-origin: left;
-  transition: transform 0.12s linear;
+  will-change: transform;
 }
 .timer-bar i.urgent { background: var(--red); }
-.urgent { color: #ff6b6b; animation: pulse 0.9s ease-in-out infinite; }
+.urgent { color: #ff6b6b; }
 
 /* Tombol "sentuh di udara": terisi dari bawah selama jari menahan */
 .air-target {
@@ -409,8 +405,6 @@ body.photo-mode #screen, body.photo-mode #topbar { opacity: 0; pointer-events: n
   border-radius: 1.4rem;
   border: 1px solid var(--line);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02)), var(--panel);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   transition: transform 0.2s ease, border-color 0.2s, box-shadow 0.2s;
 }
 .mode-card::before {
@@ -727,8 +721,6 @@ body.photo-mode #screen, body.photo-mode #topbar { opacity: 0; pointer-events: n
   border: 0.2rem solid var(--team);
   border-radius: 2rem;
   box-shadow: 0 0 4rem -1rem var(--team);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
 }
 .word-card.enter { animation: cardIn 0.35s ease-out; }
 .word-card.flash-ok { animation: cardIn 0.35s ease-out, glowOk 0.7s ease-out; }
@@ -836,7 +828,6 @@ body.photo-mode #screen, body.photo-mode #topbar { opacity: 0; pointer-events: n
   padding: 0.4rem 1rem 0.4rem 0.4rem;
   border-radius: 999px;
   background: rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(6px);
 }
 .avatar {
   width: 3.2rem; height: 3.2rem;
@@ -856,12 +847,12 @@ body.photo-mode #screen, body.photo-mode #topbar { opacity: 0; pointer-events: n
   font-weight: 800;
   letter-spacing: 0.1em;
   animation: pulse 1.6s ease-in-out infinite;
+  will-change: opacity;
 }
 .live-pill {
   padding: 0.45rem 0.95rem;
   border-radius: 999px;
   background: rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(6px);
   font-weight: 700;
   font-size: 1.1rem;
   white-space: nowrap;
@@ -918,6 +909,7 @@ body.photo-mode #screen, body.photo-mode #topbar { opacity: 0; pointer-events: n
   pointer-events: none;
 }
 .live-hearts span {
+  will-change: transform, opacity;
   position: absolute;
   bottom: 0;
   left: 50%;
@@ -1103,8 +1095,6 @@ body.photo-mode #screen, body.photo-mode #topbar { opacity: 0; pointer-events: n
   place-items: center;
   padding: 1rem;
   background: rgba(3, 6, 14, 0.72);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
   animation: fadeIn 0.2s ease;
   transition: opacity 0.2s;
 }
@@ -1180,14 +1170,14 @@ body.photo-mode #screen, body.photo-mode #topbar { opacity: 0; pointer-events: n
   z-index: 70;
   display: grid;
   place-items: center;
-  background: rgba(7, 11, 22, 0.3);
   pointer-events: none;
 }
 .countdown span {
+  will-change: transform, opacity;
   font-size: 15rem;
   font-weight: 800;
   color: #fff;
-  text-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.55), 0 0 4rem rgba(255, 210, 63, 0.8);
+  text-shadow: 0 0.4rem 0 rgba(0, 0, 0, 0.45);
 }
 .countdown span.pop { animation: cdPop 0.85s ease-out; }
 
@@ -1214,6 +1204,7 @@ body.photo-mode #screen, body.photo-mode #topbar { opacity: 0; pointer-events: n
 
 .confetti { position: fixed; inset: 0; z-index: 66; pointer-events: none; overflow: hidden; }
 .confetti i {
+  will-change: transform;
   position: absolute;
   top: -3vh;
   width: 0.7rem;

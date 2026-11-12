@@ -23,6 +23,7 @@ export const tracker = {
   hands: [],
   recognizer: null,
   opts: { active: false, pointers: false, badges: false },
+  suspended: 0, // > 0 = deteksi dijeda sementara (mis. saat hitung mundur 3-2-1)
 
   onStatus(fn) { statusListeners.add(fn); fn(this); return () => statusListeners.delete(fn); },
   /** fn(hands, dt) dipanggil tiap frame */
@@ -100,7 +101,10 @@ function mapResult(res) {
 
 // ---------- Sentuh di udara (dwell) ----------
 const airState = new WeakMap();
+let airBusy = false; // ada tombol yang sedang di-hover / terisi?
 function airUpdate(points, dt) {
+  if (!points.length && !airBusy) return; // tidak ada tangan & tidak ada yang perlu dikosongkan → hemat
+  let busy = false;
   const targets = document.querySelectorAll("[data-air]");
   for (const el of targets) {
     let s = airState.get(el);
@@ -126,7 +130,9 @@ function airUpdate(points, dt) {
     const p = Math.round((s.v / DWELL_MS) * 100) / 100;
     if (p !== s.p) { el.style.setProperty("--p", p); s.p = p; }
     if (over !== s.hover) { el.classList.toggle("is-hover", over && !off); s.hover = over; }
+    if (over || s.v > 0) busy = true;
   }
+  airBusy = busy;
 }
 // Klik mouse pada elemen data-air dianggap sama dengan "sentuhan" tangan
 document.addEventListener("click", (e) => {
@@ -141,7 +147,7 @@ const fx = document.getElementById("fx");
 const g = fx.getContext("2d");
 let dpr = 1, rem = 16, drew = false;
 function resize() {
-  dpr = Math.min(2, devicePixelRatio || 1);
+  dpr = 1; // cukup untuk lingkaran kursor; kanvas besar di TV 4K jadi berat
   fx.width = innerWidth * dpr;
   fx.height = innerHeight * dpr;
   rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
@@ -161,15 +167,15 @@ function draw(hands) {
   for (const h of hands) {
     if (showPointer) {
       const r = rem * 1.35;
-      g.save();
-      g.shadowColor = "rgba(255, 210, 63, .95)";
-      g.shadowBlur = 18;
+      // cahaya luar tanpa shadowBlur (shadowBlur di kanvas itu berat)
+      g.lineWidth = rem * 0.9;
+      g.strokeStyle = "rgba(255, 210, 63, .28)";
+      g.beginPath(); g.arc(h.x, h.y, r, 0, Math.PI * 2); g.stroke();
       g.lineWidth = rem * 0.28;
       g.strokeStyle = "rgba(255,255,255,.95)";
       g.beginPath(); g.arc(h.x, h.y, r, 0, Math.PI * 2); g.stroke();
       g.fillStyle = "#ffd23f";
       g.beginPath(); g.arc(h.x, h.y, rem * 0.42, 0, Math.PI * 2); g.fill();
-      g.restore();
     }
     if (o.badges) {
       const e = GESTURE_EMOJI[h.gesture];
@@ -189,14 +195,28 @@ let lastT = performance.now();
 let lastVideoTime = -1;
 let lastRun = 0;
 let cost = 16; // rata-rata waktu deteksi (ms) — di laptop lambat deteksi otomatis dijarangkan
+const MIN_INTERVAL = 50; // maks ±20 deteksi/detik, sisa waktu untuk animasi & timer
+let view = []; // posisi kursor yang dihaluskan tiap frame (deteksi lebih jarang dari layar)
+
+function smooth(hands, dt) {
+  const k = Math.min(1, dt / 60);
+  view = hands.map((h, i) => {
+    const p = view[i];
+    if (!p || Math.hypot(p.x - h.x, p.y - h.y) > 220) return { ...h };
+    return { ...h, x: p.x + (h.x - p.x) * k, y: p.y + (h.y - p.y) * k };
+  });
+  return view;
+}
+
 function loop(now) {
   requestAnimationFrame(loop);
   const dt = Math.min(100, now - lastT);
   lastT = now;
   const o = tracker.opts;
-  if (o.active && tracker.recognizer && camera.ready) {
+  if (o.active && !tracker.suspended && tracker.recognizer && camera.ready) {
     const v = camera.video;
-    if (v.currentTime !== lastVideoTime && now - lastRun >= Math.min(120, cost * 1.3)) {
+    // deteksi memakan ≤ ±40% waktu: laptop cepat ±20×/detik, laptop lambat otomatis lebih jarang
+    if (v.currentTime !== lastVideoTime && now - lastRun >= Math.max(MIN_INTERVAL, Math.min(200, cost * 2.5))) {
       lastVideoTime = v.currentTime;
       lastRun = now;
       const t0 = performance.now();
@@ -211,10 +231,11 @@ function loop(now) {
     tracker.hands = [];
     prevHands = [];
   }
-  const hands = o.active ? tracker.hands : [];
+  const hands = o.active && !tracker.suspended ? tracker.hands : [];
+  const shown = smooth(hands, dt);
   frameListeners.forEach((fn) => fn(hands, dt));
-  airUpdate(o.active && o.pointers ? hands : [], dt);
-  draw(hands);
+  airUpdate(o.active && o.pointers ? shown : [], dt);
+  draw(shown);
 }
 requestAnimationFrame(loop);
 
