@@ -12,11 +12,12 @@ Game kelas interaktif berbasis **kamera TV di depan kelas**. Siswa bermain dalam
 | Mode | Cara main | Interaksi antar siswa |
 |---|---|---|
 | ⚔️ **Duel Cepat Tepat** | 2 wakil tim berdiri di kiri & kanan layar, menjawab soal dengan menunjuk huruf A–D di udara dan menahan jari ±1 detik. Pertama benar +100. | Adu cepat 1 lawan 1, tim menyemangati, pemain bergiliran |
-| 🧺 **Tangkap & Pilah** | Kartu berjatuhan dari atas layar. Pemain menyentuh kartu dengan jari untuk menangkapnya, lalu menggerakkan tangan ke keranjang kiri/kanan yang benar. Topik: Pendapatan/Beban, Aset/Utang, Promosi Organik/Berbayar, Aman/Bahaya, Produk Fisik/Digital. | 2 pemain satu tim bekerja sama, anggota tim lain berteriak memberi arahan |
+| 🧺 **Tangkap & Pilah** | Kartu berjatuhan dari atas layar. Pemain menyentuh kartu dengan jari untuk menangkapnya, lalu menggerakkan tangan ke keranjang kiri/kanan yang benar. 8 topik: Pendapatan/Beban, Aset/Utang, Saldo Normal Debit/Kredit, Aset Lancar/Tetap, Laba Rugi/Neraca, Promosi Organik/Berbayar, Aman/Bahaya, Produk Fisik/Digital. | 2 pemain satu tim bekerja sama, anggota tim lain berteriak memberi arahan |
 | 🗣️ **Tebak Istilah** | Penebak membelakangi layar, tim memberi petunjuk tanpa kata terlarang. Juri dari tim lawan menilai dengan 👍 (benar) / 👎 (lewati) ke kamera. | Kerja sama tim + tim lawan jadi juri |
+| ⚖️ **Debit atau Kredit?** | Layar jadi **Akun T raksasa** (kiri = Debit, kanan = Kredit). Muncul transaksi + satu akun; pemain mengangkat tangan ke sisi yang benar. 35 transaksi: modal, pembelian/penjualan tunai & kredit, retur, utang/piutang, prive, hingga jurnal penyesuaian. | Estafet: setiap beberapa soal ganti pemain, waktu terus berjalan |
 | 🏆 **Podium & Foto Juara** | Peringkat tim + foto bersama dengan bingkai, bisa diunduh. | Seluruh kelas |
 
-Materi mencakup: model bisnis (dropship, reseller, B2C/C2C), marketplace, pembayaran digital (QRIS, COD, paylater), digital marketing (SEO, AIDA, CTA, influencer, retargeting), CRM & customer service, keamanan (OTP, phishing, hak cipta), serta **hitungan khas AKL**: HPP, harga jual, biaya admin marketplace, diskon, ROAS, CTR, conversion rate, laba bersih, dan jurnal penjualan online.
+Materi mencakup: model bisnis (dropship, reseller, B2C/C2C), marketplace, pembayaran digital (QRIS, COD, paylater), digital marketing (SEO, AIDA, CTA, influencer, retargeting), CRM & customer service, keamanan (OTP, phishing, hak cipta), serta **materi AKL**: persamaan dasar akuntansi, saldo normal, siklus akuntansi, jurnal & buku besar, penyesuaian & penutupan, aset lancar/tetap, perusahaan dagang (retur, syarat 2/10 n/30, FOB), bukti transaksi, kas kecil, rekonsiliasi bank, dan hitungan: penyusutan, HPP, laba kotor, PPN, harga jual, biaya admin marketplace, diskon, ROAS, CTR, conversion rate, laba bersih, dan jurnal penjualan online.
 
 ## 🚀 Deploy ke Vercel (sekali saja, ±2 menit)
 
@@ -45,16 +46,18 @@ Tips: pemain berdiri ±1,5–2,5 m dari kamera, ruangan cukup terang, dan hindar
 | Duel | Tim kiri `1` `2` `3` `4` · Tim kanan `7` `8` `9` `0` · Lanjut `Spasi` |
 | Tebak Istilah | Benar `→` / `PageDown` · Lewati `←` / `PageUp` (bisa pakai clicker presentasi) |
 | Tangkap & Pilah | Seret kartu dengan mouse, atau `←` / `→` memasukkan kartu paling bawah |
+| Debit atau Kredit? | `D` / `←` debit · `K` / `→` kredit |
 | Semua | Layar penuh `F` |
 
 Semua tombol di layar juga bisa diklik dengan mouse.
 
 ## ✏️ Mengubah soal & materi
 
-Semua soal, kartu tebak istilah, dan kartu tangkap & pilah ada di **`js/data.js`**. Edit langsung di GitHub (ikon pensil) → **Commit** → Vercel otomatis memperbarui game.
+Semua soal (80), kartu tebak istilah (95), kartu tangkap & pilah (8 topik), dan transaksi jurnal (35) ada di **`js/data.js`**. Edit langsung di GitHub (ikon pensil) → **Commit** → Vercel otomatis memperbarui game.
 
 - Soal duel: pilihan **pertama** selalu jawaban yang benar (urutan diacak otomatis saat main).
 - Tangkap & Pilah: tiap kartu ditulis `["teks", "L"]` (keranjang kiri) atau `["teks", "R"]` (keranjang kanan). Topik baru bisa ditambah di `SORT_SETS`.
+- Debit atau Kredit?: tiap transaksi di `JOURNAL` berisi akun yang di-debit (`d`) dan di-kredit (`k`).
 
 ## 🧪 Coba di komputer sendiri (opsional)
 
@@ -74,6 +77,6 @@ js/data.js            ← bank soal & materi (edit di sini)
 js/app.js             titik masuk, bar atas
 js/camera.js          akses webcam
 js/tracker.js         pelacak tangan, kursor jari, gestur
-js/screens/*.js       menu, duel, pilah, tebak, podium
+js/screens/*.js       menu, duel, pilah, tebak, akun (debit/kredit), podium
 vendor/mediapipe/     library MediaPipe Tasks Vision 0.10.14 + model gestur (Apache-2.0)
 ```

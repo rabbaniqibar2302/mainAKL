@@ -22,6 +22,11 @@ const MODES = [
     desc: "Tim memberi petunjuk tanpa kata terlarang. Juri tim lawan menilai dengan 👍 / 👎.",
     tags: ["👍 Gestur", "Kerja sama tim"],
   },
+  {
+    id: "akun", n: 4, emoji: "⚖️", accent: "#22c55e", title: "Debit atau Kredit?",
+    desc: "Layar jadi Akun T raksasa. Angkat tangan ke sisi DEBIT atau KREDIT — estafet bergantian!",
+    tags: ["🙋 Angkat tangan", "📒 Jurnal AKL"],
+  },
 ];
 
 export default function home(root) {
@@ -39,8 +44,7 @@ export default function home(root) {
           ${MODES.map((m) => `
             <button class="mode-card" data-go="${m.id}" style="--accent:${m.accent}">
               <span class="mode-num">MODE ${m.n}</span>
-              <span class="mode-emoji">${m.emoji}</span>
-              <h3>${m.title}</h3>
+              <h3><span class="mode-emoji">${m.emoji}</span>${m.title}</h3>
               <p>${m.desc}</p>
               <span class="tags">${m.tags.map((t) => `<span>${t}</span>`).join("")}</span>
             </button>`).join("")}

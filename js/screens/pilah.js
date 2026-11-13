@@ -164,7 +164,7 @@ export default function pilah(root) {
   }
 
   function grab(c, p) {
-    c.grab = true; c.ax = p.x; c.ay = p.y; c.lost = 0;
+    c.grab = true; c.ax = p.x; c.ay = p.y; c.lost = 0; c.byMouse = !!p.m;
     c.el.classList.add("held");
     sfx.pop();
   }
@@ -184,7 +184,7 @@ export default function pilah(root) {
     }
 
     const pts = hands.map((h) => ({ x: h.x - geo.left, y: h.y - geo.top }));
-    if (mouse) pts.push({ x: mouse.x - geo.left, y: mouse.y - geo.top });
+    if (mouse) pts.push({ x: mouse.x - geo.left, y: mouse.y - geo.top, m: true });
     const held = cards.filter((c) => c.grab && !c.done);
 
     for (const c of cards) {
@@ -192,9 +192,10 @@ export default function pilah(root) {
       if (c.grab) {
         // ikuti tangan terdekat dari posisi terakhir
         let best = null, bd = Infinity;
-        for (const p of pts) { const d = Math.hypot(p.x - c.ax, p.y - c.ay); if (d < bd) { bd = d; best = p; } }
-        if (best && bd < 260) { c.ax = best.x; c.ay = best.y; c.lost = 0; }
-        else if ((c.lost += dt) > LOST_MS) release(c);
+        if (c.byMouse) { best = pts.find((p) => p.m); bd = 0; } // kartu yang dipegang mouse selalu ikut mouse
+        else for (const p of pts) { if (p.m) continue; const d = Math.hypot(p.x - c.ax, p.y - c.ay); if (d < bd) { bd = d; best = p; } }
+        if (best && bd < 400) { c.ax = best.x; c.ay = best.y; c.lost = 0; }
+        else if (c.byMouse || (c.lost += dt) > LOST_MS) release(c);
         if (c.grab) {
           c.x = c.ax - c.w / 2;
           c.y = c.ay - c.h / 2;
@@ -276,8 +277,7 @@ export default function pilah(root) {
   function onMove(e) { if (mouse) mouse = { x: e.clientX, y: e.clientY }; }
   function onUp() {
     if (!mouse) return;
-    const mx = mouse.x - (geo?.left || 0), my = mouse.y - (geo?.top || 0);
-    cards.forEach((c) => { if (c.grab && !c.done && Math.hypot(c.ax - mx, c.ay - my) < 10) release(c); });
+    cards.forEach((c) => { if (c.grab && !c.done && c.byMouse) release(c); });
     mouse = null;
   }
   addEventListener("pointerdown", onDown);

@@ -116,9 +116,10 @@ function airUpdate(points, dt) {
       const pad = 8;
       over = points.some((p) => p.x >= r.left - pad && p.x <= r.right + pad && p.y >= r.top - pad && p.y <= r.bottom + pad);
     }
+    const need = +el.dataset.dwell || DWELL_MS; // data-dwell="600" untuk tombol yang lebih cepat
     if (over && s.armed) {
       s.v += dt;
-      if (s.v >= DWELL_MS) {
+      if (s.v >= need) {
         s.v = 0;
         s.armed = false; // harus keluar dulu sebelum bisa memilih lagi
         el.dispatchEvent(new CustomEvent("air", { bubbles: true, detail: { source: "hand" } }));
@@ -127,7 +128,7 @@ function airUpdate(points, dt) {
       s.v = Math.max(0, s.v - dt * 2.5);
       if (!over) s.armed = true;
     }
-    const p = Math.round((s.v / DWELL_MS) * 100) / 100;
+    const p = Math.round((s.v / need) * 100) / 100;
     if (p !== s.p) { el.style.setProperty("--p", p); s.p = p; }
     if (over !== s.hover) { el.classList.toggle("is-hover", over && !off); s.hover = over; }
     if (over || s.v > 0) busy = true;

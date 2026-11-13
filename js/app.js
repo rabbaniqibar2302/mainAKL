@@ -10,6 +10,7 @@ import home from "./screens/home.js";
 import duel from "./screens/duel.js";
 import pilah from "./screens/pilah.js";
 import tebak from "./screens/tebak.js";
+import akun from "./screens/akun.js";
 import podium from "./screens/podium.js";
 
 camera.init($("#cam"));
@@ -19,6 +20,7 @@ register("home", home);
 register("duel", duel);
 register("pilah", pilah);
 register("tebak", tebak);
+register("akun", akun);
 register("podium", podium);
 
 // ---------- Bar atas ----------

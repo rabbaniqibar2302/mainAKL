@@ -151,6 +151,11 @@ export function openHelpModal() {
           <p class="small muted">Keyboard / clicker presentasi: <kbd>→</kbd> atau <kbd>PageDown</kbd> = benar, <kbd>←</kbd> atau <kbd>PageUp</kbd> = lewati.</p>
         </section>
         <section>
+          <h3>⚖️ Debit atau Kredit? (Akun T Estafet)</h3>
+          <p>Layar jadi Akun T raksasa. Satu pemain berdiri di tengah, membaca transaksi & akun, lalu mengangkat tangan ke kotak DEBIT (kiri) atau KREDIT (kanan). Setiap beberapa soal muncul “GANTI PEMAIN” — anggota tim berikutnya maju. Benar +20, beruntun bonus +10.</p>
+          <p class="small muted">Keyboard: <kbd>D</kbd>/<kbd>←</kbd> debit, <kbd>K</kbd>/<kbd>→</kbd> kredit.</p>
+        </section>
+        <section>
           <h3>Lain-lain</h3>
           <ul>
             <li>Skor tersimpan otomatis di browser ini (tidak hilang saat refresh).</li>
